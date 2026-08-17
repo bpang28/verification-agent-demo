@@ -1,0 +1,20 @@
+{
+  "activity": ["tof_s", "conversion_pct"],
+  "performance": ["tof_s", "conversion_pct", "selectivity_pct", "stability_hours"],
+  "outcome metrics": ["tof_s", "conversion_pct", "selectivity_pct", "stability_hours"],
+  "process conditions": ["reaction_temp_c", "pressure_bar", "ghsv_h"],
+  "characterization results": ["bet_surface_area_m2g", "dispersion_pct", "synthesis_method", "calcination_temp_c"],
+  "characterisation results": ["bet_surface_area_m2g", "dispersion_pct", "synthesis_method", "calcination_temp_c"],
+  "stability": ["stability_hours"],
+  "selectivity": ["selectivity_pct"],
+  "conversion": ["conversion_pct"],
+  "turnover frequency": ["tof_s"],
+  "surface area": ["bet_surface_area_m2g"],
+  "dispersion": ["dispersion_pct"],
+  "metal loading": ["metal_loading_wt_pct"],
+  "promoter loading": ["promoter_loading_wt_pct"],
+  "calcination temperature": ["calcination_temp_c"],
+  "reaction temperature": ["reaction_temp_c"],
+  "pressure": ["pressure_bar"],
+  "space velocity": ["ghsv_h"]
+}

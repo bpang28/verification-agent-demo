@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "description": "Synthetic literature chunk fixtures for retrieval evaluation. Text is fabricated for demonstration; no real publication is represented.",
+  "chunks": [
+    {
+      "chunk_id": "LIT-001",
+      "title": "Ceria-Supported Palladium for Low-Temperature CO Oxidation",
+      "source_type": "external_literature",
+      "page": 3,
+      "text": "Palladium catalysts supported on CeO2 exhibit significantly enhanced CO oxidation activity at temperatures below 150 °C compared to traditional Al2O3 supports. The enhancement is attributed to the oxygen storage capacity (OSC) of ceria, which facilitates PdO re-oxidation under lean conditions. In this study, 1 wt% Pd/CeO2 prepared by wet impregnation achieved 82% CO conversion at 100 °C and GHSV of 60,000 h-1. TOF values referenced to CO chemisorption-derived dispersion were 0.45–0.50 s-1 under these conditions.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-002",
+      "title": "Ceria-Supported Palladium for Low-Temperature CO Oxidation",
+      "source_type": "external_literature",
+      "page": 5,
+      "text": "Lanthanum promotion of Pd/CeO2 was found to increase BET surface area from ~112 to ~124 m2/g by retarding sintering of the CeO2 support during calcination at 400 °C. La promotion at 1 wt% La loading also improved metal dispersion from approximately 54% to 62%, consistent with La acting as a structural stabiliser. Stability tests at 100 °C over 200 h showed <5% conversion loss for La-promoted samples versus >20% for the unpromoted reference.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-003",
+      "title": "Dry Reforming of Methane over Rh-Based Catalysts",
+      "source_type": "external_literature",
+      "page": 2,
+      "text": "Rhodium is among the most active noble metals for the dry reforming of methane (DRM) reaction (CH4 + CO2 → 2H2 + 2CO). Under standard DRM conditions at 700 °C and atmospheric pressure with CH4:CO2 = 1:1 feed, Rh/Al2O3 (3 wt% Rh) achieves CH4 conversions of 90–93% and syngas selectivity above 98%. The high intrinsic activity of Rh is reflected in TOF values of 0.35–0.42 s-1, significantly higher than Ni-based counterparts at equivalent temperatures.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-004",
+      "title": "Dry Reforming of Methane over Rh-Based Catalysts",
+      "source_type": "external_literature",
+      "page": 6,
+      "text": "Carbon deposition remains the primary deactivation route for Ni catalysts in DRM. Operando Raman spectroscopy identified graphitic and filamentous carbon species on unpromoted 15% Ni/Al2O3 after 30 h on stream at 750 °C. La promotion (2 wt% La) reduced D/G band intensity by approximately 60% and extended stable operation from 30 h to 80 h. The effect was attributed to La-induced basicity increasing CO2 adsorption and gasification of surface carbon intermediates.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-005",
+      "title": "Noble-Metal-Free WGS Catalysts on Zirconia",
+      "source_type": "external_literature",
+      "page": 4,
+      "text": "ZrO2-supported Cu catalysts (2–10 wt% Cu) prepared by coprecipitation exhibited stable CO conversion between 65–72% at 250 °C under medium-temperature WGS conditions (30,000 h-1 GHSV, 1.5 bar). TOF values based on CO pulse chemisorption (0.10–0.12 s-1) were lower than Pt-group alternatives but comparable on a cost-corrected basis. Stability tests over 400 h showed no significant activity loss for Cu loadings below 5 wt%.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-006",
+      "title": "Noble-Metal-Free WGS Catalysts on Zirconia",
+      "source_type": "external_literature",
+      "page": 7,
+      "text": "Potassium promotion of Pt/ZrO2 improved both activity and long-term stability in the water-gas shift reaction. At 300 °C and 1.5 bar, 2 wt% K promotion increased CO conversion from 78% to 86% and extended the stable operating window from 500 h to beyond 700 h. Characterisation by EXAFS indicated that K modifies the Pt coordination environment, stabilising partially oxidised Pt surface species that are proposed to be the active sites.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-007",
+      "title": "CO2 Hydrogenation Selectivity on Ru and Ni Catalysts",
+      "source_type": "external_literature",
+      "page": 3,
+      "text": "Ru/TiO2 catalysts (5 wt% Ru) are highly selective for the Sabatier reaction (CO2 + 4H2 → CH4 + 2H2O) at 200 °C, achieving 88% CH4 selectivity with 61% CO2 conversion at 10 bar and 18,000 h-1. The selectivity advantage of Ru over Ni under these conditions is attributed to the lower CO binding energy on Ru, which prevents CO accumulation and favours complete hydrogenation to methane.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-008",
+      "title": "CO2 Hydrogenation Selectivity on Ru and Ni Catalysts",
+      "source_type": "external_literature",
+      "page": 8,
+      "text": "Fe promotion of Ni/TiO2 (3 wt% Fe, 10 wt% Ni) improved CO2 conversion from 75% to 82% and selectivity from 79% to 87% at 300 °C and 10 bar. DFT calculations suggest Fe creates bifunctional sites that activate CO2 via a carbonate intermediate, reducing the activation barrier for the rate-determining CO2 dissociation step. The improvement was retained over 250 h of operation.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-009",
+      "title": "Coke Resistance in Ni/La2O3 for Dry Reforming",
+      "source_type": "external_literature",
+      "page": 5,
+      "text": "La2O3-supported Ni catalysts show intrinsically higher coke resistance than Al2O3 counterparts due to the basic character of the support, which promotes CO2 activation at the metal-support interface. Under DRM conditions (750 °C, CH4:CO2 = 1:1), 5 wt% Ni/La2O3 maintained stable CH4 conversion near 71% for 60 h. Ce co-promotion further increased stability to 120 h by enhancing oxygen mobility and creating additional CO2 activation sites.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-010",
+      "title": "Coke Resistance in Ni/La2O3 for Dry Reforming",
+      "source_type": "external_literature",
+      "page": 9,
+      "text": "Metal loading effects in Ni/La2O3 follow a non-monotonic trend for TOF. Increasing Ni from 5 to 10 wt% raised absolute CH4 conversion (71% to 84%) but reduced TOF from 0.083 to 0.061 s-1, indicating ensemble site dilution through particle agglomeration at higher loadings. XRD crystallite size analysis confirmed Ni particle growth from approximately 8 nm at 5 wt% to 15 nm at 10 wt% after calcination at 600 °C.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-011",
+      "title": "Atomic Layer Deposition of Pd on CeO2",
+      "source_type": "external_literature",
+      "page": 2,
+      "text": "Pd deposited on CeO2 by atomic layer deposition (ALD) achieves exceptional metal dispersion (>85%) at 1 wt% loading, compared to 50–55% for equivalent wet-impregnation samples. The ALD-derived catalysts exhibit TOF values near 0.9 s-1 for CO oxidation at 80 °C, roughly double those of impregnated counterparts. The enhanced activity is attributed to the prevalence of single-atom Pd sites that maximise Pd–Ce4+/Ce3+ redox coupling at the metal-support interface.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-012",
+      "title": "Atomic Layer Deposition of Pd on CeO2",
+      "source_type": "external_literature",
+      "page": 4,
+      "text": "Long-term stability of ALD-Pd/CeO2 at 80 °C was evaluated over 350 h. Conversion declined by less than 8%, significantly outperforming impregnated Pd/CeO2 samples (>25% decline over 120 h under the same conditions). Post-reaction TEM confirmed that single-atom sites were largely retained under lean CO oxidation conditions, whereas particle sintering was the dominant deactivation mode in impregnated samples.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-013",
+      "title": "Review: Rare-Earth Promoters in Heterogeneous Catalysis",
+      "source_type": "external_literature",
+      "page": 12,
+      "text": "Lanthanum is one of the most widely studied rare-earth promoters across multiple catalytic systems. Its primary functions are structural stabilisation (prevention of support sintering), basicity enhancement (facilitating CO2 activation), and in some cases electronic modification of the active metal. A consistent finding across CO oxidation, DRM, and WGS studies is that La promotion at 1–2 wt% loading improves both activity and long-term stability, with the improvement attributed primarily to surface area retention rather than direct electronic effects.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-014",
+      "title": "Review: Rare-Earth Promoters in Heterogeneous Catalysis",
+      "source_type": "external_literature",
+      "page": 18,
+      "text": "Cerium promotion is distinct from lanthanum in that Ce participates directly in redox cycling through the Ce4+/Ce3+ couple. In Ni-based reforming catalysts, Ce co-promotion enhances oxygen mobility at the Ni-support interface, facilitating oxidation of carbon precursors and suppressing coke accumulation. These effects are maximised at Ce loadings of 1–3 wt%, with diminishing returns at higher loadings that can partially block active Ni surface sites.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-015",
+      "title": "Methanol Synthesis from CO2: Cu-Based Catalysts",
+      "source_type": "external_literature",
+      "page": 6,
+      "text": "Cu/ZnO/Al2O3 remains the industrial benchmark for methanol synthesis from CO2/H2 mixtures. Under relevant operating conditions (250 °C, 20–50 bar, GHSV = 10,000 h-1), this catalyst achieves CO2 conversion of 20–25% and methanol selectivity of 60–70%. Cu/ZrO2 alternatives prepared by coprecipitation achieve similar or slightly higher selectivities (65–75%) with improved resistance to water-induced sintering, a key concern at high CO2 conversion levels.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-016",
+      "title": "Metal Dispersion and Turnover Frequency: Measurement Conventions",
+      "source_type": "external_literature",
+      "page": 3,
+      "text": "Turnover frequency (TOF) in heterogeneous catalysis is conventionally normalised to the number of surface-accessible active sites determined by probe-molecule chemisorption (CO, H2, or O2 depending on the metal). For palladium catalysts, CO chemisorption at room temperature is the standard technique; dispersion values obtained this way assume a CO:Pd surface stoichiometry of 1:1. Reported TOF values may differ significantly if normalised to bulk metal loading rather than dispersion, and authors should specify which convention is used.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "LIT-017",
+      "title": "Stability Assessment in Catalytic Systems",
+      "source_type": "external_literature",
+      "page": 2,
+      "text": "Catalyst stability in laboratory testing is most commonly expressed as time on stream before conversion falls below a defined threshold, typically 10% relative reduction from initial steady-state value. The choice of threshold can significantly affect reported stability values; some studies use absolute conversion criteria, which disadvantages high-activity catalysts. Comparison of stability data across literature sources therefore requires careful attention to the criteria used.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "INT-001",
+      "title": "Internal Catalyst Characterisation Report — CER Series",
+      "source_type": "internal_documents",
+      "page": 1,
+      "text": "This report summarises characterisation data for the CER series catalysts (CER-001 through CER-008) prepared during Q1. BET surface area measurements were performed by N2 adsorption at 77 K (Micromeritics 3Flex instrument). Pd dispersion was measured by CO pulse chemisorption at 35 °C after reduction in 5% H2/Ar at 200 °C for 1 h. All CeO2 supports were synthesised by coprecipitation from Ce(NO3)3 and Na2CO3 at pH 9, followed by drying at 120 °C and calcination at 400 °C.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "INT-002",
+      "title": "Internal Catalyst Characterisation Report — CER Series",
+      "source_type": "internal_documents",
+      "page": 3,
+      "text": "For CER-003 (1% Pd–1% La/CeO2), La addition increased BET surface area to 124.6 m2/g compared to 112.4 m2/g for the unpromoted CER-001 baseline. Pd dispersion rose from 54.2% (CER-001) to 62.3% (CER-003) consistent with finer Pd particle size in the presence of La. Stability testing at 100 °C showed 200 h stable operation for CER-003 versus 120 h for CER-001, attributed to suppression of Pd sintering by the La additive.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "INT-003",
+      "title": "Internal Stability Protocol — Catalytic Oxidation Tests",
+      "source_type": "internal_documents",
+      "page": 1,
+      "text": "Stability is defined for this project as time on stream before CO conversion falls below 90% of its initial steady-state value measured at 2 h on stream. Tests are conducted in a fixed-bed quartz reactor (i.d. = 6 mm) loaded with 100 mg catalyst diluted 1:3 in SiC. Feed composition: 1% CO, 1% O2, balance He. GHSV = 60,000 h-1. Temperature is isothermal at the target reaction temperature measured by a thermocouple at mid-bed position.",
+      "embedding_vector_placeholder": null
+    },
+    {
+      "chunk_id": "INT-004",
+      "title": "Internal Development Log — PDC Series",
+      "source_type": "internal_documents",
+      "page": 2,
+      "text": "PDC-002 (1% Pd–0.5% La / CeO2-ZrO2) showed the strongest performance among PDC-series catalysts. At 120 °C and 60,000 h-1 GHSV, CO conversion was 96.2% and TOF 0.67 s-1, representing a 16% improvement in TOF over the unpromoted PDC-001 baseline. Stability exceeded 400 h with less than 3% conversion decline. The CeO2-ZrO2 mixed support provides improved thermal stability over pure CeO2 by suppressing phase separation up to 700 °C.",
+      "embedding_vector_placeholder": null
+    }
+  ]
+}

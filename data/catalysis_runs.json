@@ -1,0 +1,328 @@
+{
+  "schema_version": "1.0",
+  "table": "catalysis_experiments",
+  "description": "Synthetic rare-earth and transition-metal catalyst performance dataset. Values are illustrative; do not cite as experimental observations.",
+  "columns": [
+    {"name": "catalyst_id",             "type": "STRING",  "description": "Unique run identifier (e.g. CER-001)"},
+    {"name": "catalyst_name",           "type": "STRING",  "description": "Human-readable catalyst label"},
+    {"name": "active_metal",            "type": "STRING",  "description": "Primary catalytic metal or None for bare supports"},
+    {"name": "support",                 "type": "STRING",  "description": "Oxide support material"},
+    {"name": "metal_loading_wt_pct",    "type": "FLOAT",   "description": "Active-metal weight loading (wt%)"},
+    {"name": "promoter",                "type": "STRING",  "description": "Promoter element or None"},
+    {"name": "promoter_loading_wt_pct", "type": "FLOAT",   "description": "Promoter weight loading (wt%); null when absent"},
+    {"name": "bet_surface_area_m2g",    "type": "FLOAT",   "description": "BET surface area (m2/g)"},
+    {"name": "synthesis_method",        "type": "STRING",  "description": "Catalyst preparation route"},
+    {"name": "calcination_temp_c",      "type": "INTEGER", "description": "Calcination temperature (deg C)"},
+    {"name": "reaction",                "type": "STRING",  "description": "Target reaction identifier"},
+    {"name": "reaction_temp_c",         "type": "INTEGER", "description": "Reaction temperature (deg C)"},
+    {"name": "pressure_bar",            "type": "FLOAT",   "description": "Total reactor pressure (bar)"},
+    {"name": "ghsv_h",                  "type": "FLOAT",   "description": "Gas hourly space velocity (h-1)"},
+    {"name": "conversion_pct",          "type": "FLOAT",   "description": "Reactant conversion (mol%)"},
+    {"name": "selectivity_pct",         "type": "FLOAT",   "description": "Target-product selectivity (mol%)"},
+    {"name": "tof_s",                   "type": "FLOAT",   "description": "Turnover frequency based on metal dispersion (s-1)"},
+    {"name": "stability_hours",         "type": "FLOAT",   "description": "Time on stream without >10% conversion drop (h)"},
+    {"name": "dispersion_pct",          "type": "FLOAT",   "description": "Metal dispersion from CO chemisorption (%)"}
+  ],
+  "rows": [
+    {
+      "catalyst_id": "CER-001", "catalyst_name": "1% Pd/CeO2",
+      "active_metal": "Pd", "support": "CeO2",
+      "metal_loading_wt_pct": 1.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 112.4, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 400, "reaction": "co_oxidation",
+      "reaction_temp_c": 100, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 82.1, "selectivity_pct": 100.0,
+      "tof_s": 0.48, "stability_hours": 120.0, "dispersion_pct": 54.2
+    },
+    {
+      "catalyst_id": "CER-002", "catalyst_name": "2% Pd/CeO2",
+      "active_metal": "Pd", "support": "CeO2",
+      "metal_loading_wt_pct": 2.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 108.7, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 400, "reaction": "co_oxidation",
+      "reaction_temp_c": 100, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 95.3, "selectivity_pct": 100.0,
+      "tof_s": 0.35, "stability_hours": 100.0, "dispersion_pct": 41.8
+    },
+    {
+      "catalyst_id": "CER-003", "catalyst_name": "1% Pd–1% La/CeO2",
+      "active_metal": "Pd", "support": "CeO2",
+      "metal_loading_wt_pct": 1.0, "promoter": "La", "promoter_loading_wt_pct": 1.0,
+      "bet_surface_area_m2g": 124.6, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 400, "reaction": "co_oxidation",
+      "reaction_temp_c": 100, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 91.7, "selectivity_pct": 100.0,
+      "tof_s": 0.61, "stability_hours": 200.0, "dispersion_pct": 62.3
+    },
+    {
+      "catalyst_id": "CER-004", "catalyst_name": "0.5% Pt/CeO2",
+      "active_metal": "Pt", "support": "CeO2",
+      "metal_loading_wt_pct": 0.5, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 115.2, "synthesis_method": "deposition_precipitation",
+      "calcination_temp_c": 350, "reaction": "co_oxidation",
+      "reaction_temp_c": 80, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 74.5, "selectivity_pct": 100.0,
+      "tof_s": 0.72, "stability_hours": 150.0, "dispersion_pct": 78.1
+    },
+    {
+      "catalyst_id": "CER-005", "catalyst_name": "1% Au/CeO2",
+      "active_metal": "Au", "support": "CeO2",
+      "metal_loading_wt_pct": 1.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 106.3, "synthesis_method": "deposition_precipitation",
+      "calcination_temp_c": 300, "reaction": "co_oxidation",
+      "reaction_temp_c": 25, "pressure_bar": 1.0, "ghsv_h": 40000,
+      "conversion_pct": 88.9, "selectivity_pct": 100.0,
+      "tof_s": 1.24, "stability_hours": 48.0, "dispersion_pct": 34.6
+    },
+    {
+      "catalyst_id": "LAO-001", "catalyst_name": "5% Ni/La2O3",
+      "active_metal": "Ni", "support": "La2O3",
+      "metal_loading_wt_pct": 5.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 18.4, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 600, "reaction": "dry_reforming",
+      "reaction_temp_c": 750, "pressure_bar": 1.0, "ghsv_h": 36000,
+      "conversion_pct": 71.2, "selectivity_pct": 95.4,
+      "tof_s": 0.083, "stability_hours": 60.0, "dispersion_pct": 8.7
+    },
+    {
+      "catalyst_id": "LAO-002", "catalyst_name": "10% Ni/La2O3",
+      "active_metal": "Ni", "support": "La2O3",
+      "metal_loading_wt_pct": 10.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 14.1, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 600, "reaction": "dry_reforming",
+      "reaction_temp_c": 750, "pressure_bar": 1.0, "ghsv_h": 36000,
+      "conversion_pct": 83.6, "selectivity_pct": 94.1,
+      "tof_s": 0.061, "stability_hours": 40.0, "dispersion_pct": 5.4
+    },
+    {
+      "catalyst_id": "LAO-003", "catalyst_name": "5% Ni–2% Ce/La2O3",
+      "active_metal": "Ni", "support": "La2O3",
+      "metal_loading_wt_pct": 5.0, "promoter": "Ce", "promoter_loading_wt_pct": 2.0,
+      "bet_surface_area_m2g": 22.7, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 600, "reaction": "dry_reforming",
+      "reaction_temp_c": 750, "pressure_bar": 1.0, "ghsv_h": 36000,
+      "conversion_pct": 79.4, "selectivity_pct": 96.8,
+      "tof_s": 0.098, "stability_hours": 120.0, "dispersion_pct": 11.2
+    },
+    {
+      "catalyst_id": "LAO-004", "catalyst_name": "2% Rh/La2O3",
+      "active_metal": "Rh", "support": "La2O3",
+      "metal_loading_wt_pct": 2.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 16.9, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 550, "reaction": "dry_reforming",
+      "reaction_temp_c": 700, "pressure_bar": 1.0, "ghsv_h": 36000,
+      "conversion_pct": 88.3, "selectivity_pct": 97.9,
+      "tof_s": 0.41, "stability_hours": 200.0, "dispersion_pct": 28.4
+    },
+    {
+      "catalyst_id": "ALO-001", "catalyst_name": "3% Rh/Al2O3",
+      "active_metal": "Rh", "support": "Al2O3",
+      "metal_loading_wt_pct": 3.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 168.2, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 500, "reaction": "dry_reforming",
+      "reaction_temp_c": 700, "pressure_bar": 1.0, "ghsv_h": 48000,
+      "conversion_pct": 91.7, "selectivity_pct": 98.2,
+      "tof_s": 0.37, "stability_hours": 180.0, "dispersion_pct": 31.6
+    },
+    {
+      "catalyst_id": "ALO-002", "catalyst_name": "15% Ni/Al2O3",
+      "active_metal": "Ni", "support": "Al2O3",
+      "metal_loading_wt_pct": 15.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 142.5, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 550, "reaction": "dry_reforming",
+      "reaction_temp_c": 750, "pressure_bar": 1.0, "ghsv_h": 36000,
+      "conversion_pct": 67.4, "selectivity_pct": 91.3,
+      "tof_s": 0.042, "stability_hours": 30.0, "dispersion_pct": 3.9
+    },
+    {
+      "catalyst_id": "ALO-003", "catalyst_name": "15% Ni–2% La/Al2O3",
+      "active_metal": "Ni", "support": "Al2O3",
+      "metal_loading_wt_pct": 15.0, "promoter": "La", "promoter_loading_wt_pct": 2.0,
+      "bet_surface_area_m2g": 155.8, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 550, "reaction": "dry_reforming",
+      "reaction_temp_c": 750, "pressure_bar": 1.0, "ghsv_h": 36000,
+      "conversion_pct": 79.8, "selectivity_pct": 95.6,
+      "tof_s": 0.057, "stability_hours": 80.0, "dispersion_pct": 5.8
+    },
+    {
+      "catalyst_id": "ALO-004", "catalyst_name": "15% Ni–2% Ba/Al2O3",
+      "active_metal": "Ni", "support": "Al2O3",
+      "metal_loading_wt_pct": 15.0, "promoter": "Ba", "promoter_loading_wt_pct": 2.0,
+      "bet_surface_area_m2g": 148.1, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 550, "reaction": "dry_reforming",
+      "reaction_temp_c": 750, "pressure_bar": 1.0, "ghsv_h": 36000,
+      "conversion_pct": 73.1, "selectivity_pct": 93.2,
+      "tof_s": 0.049, "stability_hours": 55.0, "dispersion_pct": 4.8
+    },
+    {
+      "catalyst_id": "ZRO-001", "catalyst_name": "1% Pt/ZrO2",
+      "active_metal": "Pt", "support": "ZrO2",
+      "metal_loading_wt_pct": 1.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 87.6, "synthesis_method": "sol_gel",
+      "calcination_temp_c": 450, "reaction": "wgs",
+      "reaction_temp_c": 300, "pressure_bar": 1.5, "ghsv_h": 30000,
+      "conversion_pct": 78.3, "selectivity_pct": 99.8,
+      "tof_s": 0.19, "stability_hours": 500.0, "dispersion_pct": 72.4
+    },
+    {
+      "catalyst_id": "ZRO-002", "catalyst_name": "1% Pt–2% K/ZrO2",
+      "active_metal": "Pt", "support": "ZrO2",
+      "metal_loading_wt_pct": 1.0, "promoter": "K", "promoter_loading_wt_pct": 2.0,
+      "bet_surface_area_m2g": 81.4, "synthesis_method": "sol_gel",
+      "calcination_temp_c": 450, "reaction": "wgs",
+      "reaction_temp_c": 300, "pressure_bar": 1.5, "ghsv_h": 30000,
+      "conversion_pct": 86.4, "selectivity_pct": 99.9,
+      "tof_s": 0.24, "stability_hours": 700.0, "dispersion_pct": 69.1
+    },
+    {
+      "catalyst_id": "ZRO-003", "catalyst_name": "2% Cu/ZrO2",
+      "active_metal": "Cu", "support": "ZrO2",
+      "metal_loading_wt_pct": 2.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 94.2, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 400, "reaction": "wgs",
+      "reaction_temp_c": 250, "pressure_bar": 1.5, "ghsv_h": 20000,
+      "conversion_pct": 71.9, "selectivity_pct": 99.5,
+      "tof_s": 0.11, "stability_hours": 400.0, "dispersion_pct": 29.7
+    },
+    {
+      "catalyst_id": "TIO-001", "catalyst_name": "5% Ru/TiO2",
+      "active_metal": "Ru", "support": "TiO2",
+      "metal_loading_wt_pct": 5.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 48.3, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 400, "reaction": "co2_hydrogenation",
+      "reaction_temp_c": 200, "pressure_bar": 10.0, "ghsv_h": 18000,
+      "conversion_pct": 61.4, "selectivity_pct": 88.2,
+      "tof_s": 0.071, "stability_hours": 300.0, "dispersion_pct": 12.8
+    },
+    {
+      "catalyst_id": "TIO-002", "catalyst_name": "10% Ni/TiO2",
+      "active_metal": "Ni", "support": "TiO2",
+      "metal_loading_wt_pct": 10.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 41.7, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 450, "reaction": "co2_hydrogenation",
+      "reaction_temp_c": 300, "pressure_bar": 10.0, "ghsv_h": 18000,
+      "conversion_pct": 74.8, "selectivity_pct": 79.3,
+      "tof_s": 0.048, "stability_hours": 180.0, "dispersion_pct": 6.4
+    },
+    {
+      "catalyst_id": "TIO-003", "catalyst_name": "10% Ni–3% Fe/TiO2",
+      "active_metal": "Ni", "support": "TiO2",
+      "metal_loading_wt_pct": 10.0, "promoter": "Fe", "promoter_loading_wt_pct": 3.0,
+      "bet_surface_area_m2g": 45.2, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 450, "reaction": "co2_hydrogenation",
+      "reaction_temp_c": 300, "pressure_bar": 10.0, "ghsv_h": 18000,
+      "conversion_pct": 82.1, "selectivity_pct": 86.7,
+      "tof_s": 0.063, "stability_hours": 250.0, "dispersion_pct": 8.1
+    },
+    {
+      "catalyst_id": "PDC-001", "catalyst_name": "1% Pd/CeO2–ZrO2",
+      "active_metal": "Pd", "support": "CeO2-ZrO2",
+      "metal_loading_wt_pct": 1.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 98.6, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 500, "reaction": "co_oxidation",
+      "reaction_temp_c": 120, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 89.4, "selectivity_pct": 100.0,
+      "tof_s": 0.52, "stability_hours": 250.0, "dispersion_pct": 48.3
+    },
+    {
+      "catalyst_id": "PDC-002", "catalyst_name": "1% Pd–0.5% La/CeO2–ZrO2",
+      "active_metal": "Pd", "support": "CeO2-ZrO2",
+      "metal_loading_wt_pct": 1.0, "promoter": "La", "promoter_loading_wt_pct": 0.5,
+      "bet_surface_area_m2g": 104.1, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 500, "reaction": "co_oxidation",
+      "reaction_temp_c": 120, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 96.2, "selectivity_pct": 100.0,
+      "tof_s": 0.67, "stability_hours": 400.0, "dispersion_pct": 55.7
+    },
+    {
+      "catalyst_id": "CER-006", "catalyst_name": "3% Ni/CeO2",
+      "active_metal": "Ni", "support": "CeO2",
+      "metal_loading_wt_pct": 3.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 103.8, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 500, "reaction": "dry_reforming",
+      "reaction_temp_c": 700, "pressure_bar": 1.0, "ghsv_h": 30000,
+      "conversion_pct": 64.7, "selectivity_pct": 92.1,
+      "tof_s": 0.076, "stability_hours": 90.0, "dispersion_pct": 14.2
+    },
+    {
+      "catalyst_id": "CER-007", "catalyst_name": "3% Ni–1% Ce/CeO2",
+      "active_metal": "Ni", "support": "CeO2",
+      "metal_loading_wt_pct": 3.0, "promoter": "Ce", "promoter_loading_wt_pct": 1.0,
+      "bet_surface_area_m2g": 110.5, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 500, "reaction": "dry_reforming",
+      "reaction_temp_c": 700, "pressure_bar": 1.0, "ghsv_h": 30000,
+      "conversion_pct": 72.3, "selectivity_pct": 94.8,
+      "tof_s": 0.091, "stability_hours": 150.0, "dispersion_pct": 17.6
+    },
+    {
+      "catalyst_id": "ALO-005", "catalyst_name": "0.5% Rh/Al2O3",
+      "active_metal": "Rh", "support": "Al2O3",
+      "metal_loading_wt_pct": 0.5, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 178.4, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 500, "reaction": "dry_reforming",
+      "reaction_temp_c": 750, "pressure_bar": 1.0, "ghsv_h": 48000,
+      "conversion_pct": 78.9, "selectivity_pct": 97.4,
+      "tof_s": 0.44, "stability_hours": 300.0, "dispersion_pct": 44.2
+    },
+    {
+      "catalyst_id": "SIO-001", "catalyst_name": "5% Cu/SiO2",
+      "active_metal": "Cu", "support": "SiO2",
+      "metal_loading_wt_pct": 5.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 312.7, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 350, "reaction": "co2_hydrogenation",
+      "reaction_temp_c": 250, "pressure_bar": 20.0, "ghsv_h": 10000,
+      "conversion_pct": 44.2, "selectivity_pct": 52.3,
+      "tof_s": 0.018, "stability_hours": 200.0, "dispersion_pct": 18.4
+    },
+    {
+      "catalyst_id": "SIO-002", "catalyst_name": "5% Cu–5% Zn/SiO2",
+      "active_metal": "Cu", "support": "SiO2",
+      "metal_loading_wt_pct": 5.0, "promoter": "Zn", "promoter_loading_wt_pct": 5.0,
+      "bet_surface_area_m2g": 298.1, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 350, "reaction": "co2_hydrogenation",
+      "reaction_temp_c": 250, "pressure_bar": 20.0, "ghsv_h": 10000,
+      "conversion_pct": 58.7, "selectivity_pct": 68.4,
+      "tof_s": 0.027, "stability_hours": 500.0, "dispersion_pct": 22.1
+    },
+    {
+      "catalyst_id": "ZRO-004", "catalyst_name": "10% Cu/ZrO2",
+      "active_metal": "Cu", "support": "ZrO2",
+      "metal_loading_wt_pct": 10.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 78.3, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 400, "reaction": "co2_hydrogenation",
+      "reaction_temp_c": 230, "pressure_bar": 20.0, "ghsv_h": 10000,
+      "conversion_pct": 52.1, "selectivity_pct": 71.6,
+      "tof_s": 0.031, "stability_hours": 350.0, "dispersion_pct": 16.8
+    },
+    {
+      "catalyst_id": "LAO-005", "catalyst_name": "5% Ru/La2O3",
+      "active_metal": "Ru", "support": "La2O3",
+      "metal_loading_wt_pct": 5.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 20.1, "synthesis_method": "wet_impregnation",
+      "calcination_temp_c": 500, "reaction": "dry_reforming",
+      "reaction_temp_c": 700, "pressure_bar": 1.0, "ghsv_h": 30000,
+      "conversion_pct": 85.4, "selectivity_pct": 98.6,
+      "tof_s": 0.34, "stability_hours": 400.0, "dispersion_pct": 26.3
+    },
+    {
+      "catalyst_id": "CER-008", "catalyst_name": "Bare CeO2",
+      "active_metal": null, "support": "CeO2",
+      "metal_loading_wt_pct": 0.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 118.2, "synthesis_method": "coprecipitation",
+      "calcination_temp_c": 400, "reaction": "co_oxidation",
+      "reaction_temp_c": 250, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 12.4, "selectivity_pct": 100.0,
+      "tof_s": null, "stability_hours": null, "dispersion_pct": null
+    },
+    {
+      "catalyst_id": "PDC-003", "catalyst_name": "1% Pd/CeO2 (ALD)",
+      "active_metal": "Pd", "support": "CeO2",
+      "metal_loading_wt_pct": 1.0, "promoter": null, "promoter_loading_wt_pct": null,
+      "bet_surface_area_m2g": 113.7, "synthesis_method": "ALD",
+      "calcination_temp_c": 400, "reaction": "co_oxidation",
+      "reaction_temp_c": 80, "pressure_bar": 1.0, "ghsv_h": 60000,
+      "conversion_pct": 71.3, "selectivity_pct": 100.0,
+      "tof_s": 0.91, "stability_hours": 350.0, "dispersion_pct": 88.4
+    }
+  ]
+}
