@@ -150,9 +150,9 @@ across domains; only the domain-specific examples differ.
 
 ## Data
 
-All data in `data/` is **synthetic and illustrative**. Values are chosen to
-be realistic in magnitude but do not represent any real catalyst, run, or
-publication. The synthetic dataset covers:
+`data/catalysis_runs.json` contains **30 synthetic catalyst performance records**.
+Values are chosen to be realistic in magnitude but do not represent any real
+catalyst or run. The synthetic dataset covers:
 
 - Six support materials: CeO2, Al2O3, ZrO2, TiO2, La2O3, SiO2
 - Six active metals: Pd, Pt, Rh, Ru, Ni, Au, Cu
@@ -161,9 +161,15 @@ publication. The synthetic dataset covers:
 - Four synthesis methods: wet impregnation, coprecipitation, sol-gel, ALD
 - Performance metrics: TOF (s⁻¹), conversion (%), selectivity (%), stability (h), BET (m²/g), dispersion (%)
 
-Twenty synthetic literature chunks and four synthetic internal-document chunks
-cover the major topics in the dataset. Chunk text was written to be representative
-of real catalysis literature structure without reproducing any actual publication.
+`data/literature_chunks.json` contains ten literature chunks (`LIT-001` through
+`LIT-010`) with passages extracted or closely paraphrased from real,
+peer-reviewed publications (ACS Catalysis, RSC Advances, Catalysis Science &
+Technology, Nature Communications), plus four internal-document chunks (`INT-001` through `INT-004`). `INT-001`
+through `INT-003` are characterisation-report excerpts whose numerical data are
+drawn from real open-access publications (same sources as LIT-*), presented in
+the style of an internal lab record; `INT-004` is a synthetic stability-protocol
+description. Access notes within each chunk flag values not independently
+verifiable from open-access text.
 
 ---
 
