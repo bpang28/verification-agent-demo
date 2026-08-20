@@ -30,7 +30,7 @@ from agent.schemas import (
     ClaimAction, VerificationResult, WorkflowOutcome,
 )
 from infrastructure.mock_database import query as db_query
-from infrastructure.mock_retrieval import retrieve
+from infrastructure.lancedb_retrieval import retrieve
 
 _MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-5")
 _VERIFIER_MODEL = os.environ.get("VERIFIER_MODEL", "claude-haiku-4-5-20251001")
