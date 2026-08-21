@@ -31,12 +31,15 @@ supplement/
 │   ├── state.py                  # AgentState: shared graph node state
 │   └── verifier_terminal.py     # Deterministic abstention renderer
 ├── infrastructure/
+│   ├── build_index.py            # One-time indexer: embeds chunks → data/embeddings.npz
+│   ├── lancedb_retrieval.py      # Vector retrieval (fastembed + cosine search)
 │   ├── mock_database.py          # SQLite-backed structured-data retrieval mock
-│   └── mock_retrieval.py         # Keyword-scored in-memory document retrieval mock
+│   └── mock_retrieval.py         # Keyword-scored retrieval (baseline / offline use)
 ├── data/
 │   ├── catalysis_runs.json       # 30 synthetic catalyst performance records
-│   └── literature_chunks.json    # 20 synthetic literature and internal-document chunks
+│   └── literature_chunks.json    # 14 literature and internal-document chunks
 ├── demo.py                       # End-to-end runnable pipeline demo
+├── eval_retrieval.py             # Retrieval evaluation: P@k, R@k, NDCG@k, MRR
 ├── requirements.txt
 └── .env.example
 ```
@@ -54,7 +57,7 @@ User query
 [1] Request planner      — Claude structured-JSON output; routes to evidence lanes
     │
     ▼
-[2] Evidence retrieval   — Structured data (SQLite mock) + Document retrieval mock
+[2] Evidence retrieval   — Structured data (SQLite mock) + Vector document retrieval
     │
     ▼
 [3] Synthesis            — Claude converts evidence packet → cited answer prose
@@ -69,10 +72,11 @@ Final verified answer (or controlled abstention / retry)
 **Infrastructure mocks replace production services** so the supplement runs
 without cloud credentials. In the primary system:
 
-| Mock (supplement)              | Production replacement             |
-|--------------------------------|------------------------------------|
-| `infrastructure/mock_database` | BigQuery + LangChain database agent |
-| `infrastructure/mock_retrieval`| LanceDB dense + BM25 hybrid search  |
+| Supplement component | Production replacement |
+|---|---|
+| `infrastructure/mock_database.py` | BigQuery + LangChain database agent |
+| `infrastructure/lancedb_retrieval.py` (fastembed + numpy) | LanceDB dense vector search (Cloud Run service) |
+| `data/embeddings.npz` (14-chunk numpy index) | LanceDB table populated from GCS-stored chunk embeddings |
 
 The LLM calls (planning, synthesis, verification) use the real Anthropic API;
 only an `ANTHROPIC_API_KEY` is required.
@@ -84,17 +88,25 @@ only an `ANTHROPIC_API_KEY` is required.
 **Requirements:** Python 3.11+, an Anthropic API key.
 
 ```bash
-# 1. Install dependencies
+# 1. Create an isolated environment
+python3.11 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\activate
+
+# 2. Install dependencies (~150 MB; no torch or CUDA required)
 pip install -r requirements.txt
 
-# 2. Configure your API key
+# 3. Configure your API key
 cp .env.example .env
 # Edit .env and set ANTHROPIC_API_KEY=sk-ant-...
+# Optionally set ANTHROPIC_MODEL=claude-haiku-4-5-20251001 to minimise credit usage
 
-# 3. Run the demo
+# 4. Build the vector index (one-time; downloads ~25 MB ONNX model on first run)
+python infrastructure/build_index.py
+
+# 5. Run the demo
 python demo.py
 
-# 4. Try a custom query
+# 6. Run a custom query
 python demo.py "Which catalysts have TOF above 0.5 s-1 and what does the literature say about their stability?"
 ```
 
@@ -125,6 +137,32 @@ Summarise what is known about coke resistance in Ni/La2O3 catalysts for dry refo
 ```
 Use our experimental records and relevant literature to propose a testable explanation for why ALD-prepared Pd/CeO2 outperforms wet-impregnated samples.
 ```
+
+---
+
+## Retrieval evaluation
+
+`eval_retrieval.py` evaluates the document retrieval layer against a
+hand-labelled relevance set (graded: primary source = 2, supporting = 1).
+Run without an API key:
+
+```bash
+python eval_retrieval.py
+```
+
+Results against the 14-chunk corpus (10 external queries, 4 internal queries)
+using `BAAI/bge-small-en-v1.5` embeddings:
+
+| Split | MRR | NDCG@1 | NDCG@3 | NDCG@5 |
+|---|---|---|---|---|
+| External literature (10 chunks) | 1.00 | 0.900 | 0.967 | 0.967 |
+| Internal documents (4 chunks) | 1.00 | 1.000 | 0.940 | 0.981 |
+
+MRR = 1.00 across both splits means the primary relevant chunk ranked first for
+every query. The two NDCG@1 misses on external queries occur on paired chunks
+(e.g. LIT-007 / LIT-008) that share vocabulary, causing the secondary chunk to
+occasionally score higher than the primary at rank 1; both are retrieved within
+the top 2.
 
 ---
 
@@ -164,12 +202,15 @@ catalyst or run. The synthetic dataset covers:
 `data/literature_chunks.json` contains ten literature chunks (`LIT-001` through
 `LIT-010`) with passages extracted or closely paraphrased from real,
 peer-reviewed publications (ACS Catalysis, RSC Advances, Catalysis Science &
-Technology, Nature Communications), plus four internal-document chunks (`INT-001` through `INT-004`). `INT-001`
-through `INT-003` are characterisation-report excerpts whose numerical data are
-drawn from real open-access publications (same sources as LIT-*), presented in
-the style of an internal lab record; `INT-004` is a synthetic stability-protocol
+Technology, Nature Communications), plus four internal-document chunks
+(`INT-001` through `INT-004`). `INT-001` through `INT-003` are
+characterisation-report excerpts whose numerical data are drawn from the same
+real open-access sources; `INT-004` is a synthetic stability-protocol
 description. Access notes within each chunk flag values not independently
 verifiable from open-access text.
+
+`data/embeddings.npz` is generated by `infrastructure/build_index.py` and is
+not committed to the repository.
 
 ---
 
@@ -178,7 +219,7 @@ verifiable from open-access text.
 | Paper section | Supplement component |
 |---|---|
 | §2.1 Request planner | `agent/prompts/plan_request.md`, `agent/request_plan.py` |
-| §2.2 Hybrid retrieval | `infrastructure/mock_retrieval.py` (keyword proxy) |
+| §2.2 Hybrid retrieval | `infrastructure/lancedb_retrieval.py`, `infrastructure/build_index.py` |
 | §2.3 Database retrieval | `infrastructure/mock_database.py` (SQLite proxy) |
 | §2.4 Synthesis | `agent/prompts/synthesize_answer.md`, `demo.py::_synthesize` |
 | §2.5 Claim verifier | `agent/prompts/verifier_prompt.md`, `demo.py::_verify` |
@@ -189,5 +230,7 @@ verifiable from open-access text.
 
 ## Licence
 
-Code is released under the MIT licence. Synthetic data files (`data/`) are
-released under CC0 (no rights reserved).
+Code is released under the MIT licence. Synthetic data in `data/catalysis_runs.json`
+is released under CC0 (no rights reserved). Passages in `data/literature_chunks.json`
+are excerpts from published works cited within each chunk and reproduced here for
+non-commercial research and reproducibility purposes.
