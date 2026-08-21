@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 _DB_PATH    = Path(__file__).parent.parent / "data" / "lancedb"
-_MODEL_NAME = "all-MiniLM-L6-v2"
+_MODEL_NAME = "BAAI/bge-small-en-v1.5"
 _DEFAULT_LIMIT = 10
 
 # Lazy singletons — loaded on first retrieve() call.
@@ -21,8 +21,8 @@ _table = None
 def _get_model():
     global _model
     if _model is None:
-        from sentence_transformers import SentenceTransformer
-        _model = SentenceTransformer(_MODEL_NAME)
+        from fastembed import TextEmbedding
+        _model = TextEmbedding(model_name=_MODEL_NAME)
     return _model
 
 
@@ -49,7 +49,7 @@ def retrieve(
     model = _get_model()
     table = _get_table()
 
-    q_vec = model.encode(query, normalize_embeddings=True).tolist()
+    q_vec = list(model.embed([query]))[0].tolist()
 
     # Over-fetch so scope filtering still returns enough results.
     fetch = limit * 4 if scope != "all" else limit

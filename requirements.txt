@@ -6,6 +6,7 @@ pydantic>=2.5,<3
 python-dotenv>=1.0,<2
 
 # Vector retrieval (run infrastructure/build_index.py once after install)
+# fastembed uses ONNX — no torch/CUDA dependency, model download ~25 MB
 lancedb>=0.8,<2
-sentence-transformers>=2.6
+fastembed>=0.3,<2
 numpy>=1.24,<3
