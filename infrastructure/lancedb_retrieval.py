@@ -1,7 +1,10 @@
 """
-Vector retrieval backed by a local LanceDB table.
+Vector retrieval backed by a numpy index built by build_index.py.
 
 Drop-in replacement for mock_retrieval.py — same retrieve() signature.
+Uses fastembed for query embedding and cosine similarity over the full index.
+In production this is a LanceDB Cloud Run service; the interface is identical.
+
 Requires build_index.py to have been run first.
 """
 from __future__ import annotations
@@ -9,13 +12,14 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-_DB_PATH    = Path(__file__).parent.parent / "data" / "lancedb"
+import numpy as np
+
+_INDEX_PATH = Path(__file__).parent.parent / "data" / "embeddings.npz"
 _MODEL_NAME = "BAAI/bge-small-en-v1.5"
 _DEFAULT_LIMIT = 10
 
-# Lazy singletons — loaded on first retrieve() call.
 _model = None
-_table = None
+_index: dict | None = None
 
 
 def _get_model():
@@ -26,13 +30,17 @@ def _get_model():
     return _model
 
 
-def _get_table():
-    global _table
-    if _table is None:
-        import lancedb
-        db = lancedb.connect(str(_DB_PATH))
-        _table = db.open_table("chunks")
-    return _table
+def _get_index() -> dict:
+    global _index
+    if _index is None:
+        if not _INDEX_PATH.exists():
+            raise FileNotFoundError(
+                f"Index not found at {_INDEX_PATH}. "
+                "Run: python infrastructure/build_index.py"
+            )
+        data = np.load(_INDEX_PATH, allow_pickle=False)
+        _index = {k: data[k] for k in data.files}
+    return _index
 
 
 def retrieve(
@@ -42,41 +50,44 @@ def retrieve(
     limit: int = _DEFAULT_LIMIT,
 ) -> list[dict[str, Any]]:
     """
-    Embed query and return top-k semantically similar chunks.
+    Embed query and return top-k chunks by cosine similarity.
 
     scope: 'internal', 'external', or 'all'
     """
     model = _get_model()
-    table = _get_table()
+    idx   = _get_index()
 
-    q_vec = list(model.embed([query]))[0].tolist()
+    q_vec = np.array(list(model.embed([query]))[0], dtype=np.float32)
+    q_vec /= max(np.linalg.norm(q_vec), 1e-9)
 
-    # Over-fetch so scope filtering still returns enough results.
-    fetch = limit * 4 if scope != "all" else limit
-    rows = table.search(q_vec).limit(fetch).to_list()
+    scores = idx["vectors"] @ q_vec  # (N,) cosine similarities
 
+    # Mask out chunks outside the requested scope.
     if scope == "internal":
-        rows = [r for r in rows if r["source_type"] == "internal_documents"]
+        mask = idx["source_types"] == "internal_documents"
     elif scope == "external":
-        rows = [r for r in rows if r["source_type"] == "external_literature"]
+        mask = idx["source_types"] == "external_literature"
+    else:
+        mask = np.ones(len(scores), dtype=bool)
 
-    rows = rows[:limit]
+    scores[~mask] = -2.0  # push out-of-scope chunks below all in-scope ones
+
+    top_indices = np.argsort(scores)[::-1][:limit]
 
     parcels = []
-    for rank, row in enumerate(rows, start=1):
-        # _distance is L2; we stored normalised vectors so cosine sim = 1 - dist/2
-        dist = row.get("_distance", 0.0)
-        score = round(max(0.0, 1.0 - dist / 2.0), 4)
+    for rank, i in enumerate(top_indices, start=1):
+        if scores[i] < -1.5:
+            break  # no more in-scope results
         parcels.append({
-            "evidence_id":      f"EV-D-{rank:03d}",
-            "chunk_id":         row["chunk_id"],
-            "rank":             rank,
-            "retrieval_score":  score,
-            "source_type":      row["source_type"],
-            "title":            row["title"],
-            "page":             row["page"] or None,
-            "text":             row["text"],
-            "citation":         row["title"],
+            "evidence_id":     f"EV-D-{rank:03d}",
+            "chunk_id":        str(idx["chunk_ids"][i]),
+            "rank":            rank,
+            "retrieval_score": round(float(scores[i]), 4),
+            "source_type":     str(idx["source_types"][i]),
+            "title":           str(idx["titles"][i]),
+            "page":            str(idx["pages"][i]) or None,
+            "text":            str(idx["texts"][i]),
+            "citation":        str(idx["titles"][i]),
         })
 
     return parcels
