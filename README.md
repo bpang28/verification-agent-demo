@@ -166,6 +166,67 @@ the top 2.
 
 ---
 
+## Example output
+
+The following is an abridged trace from the hypothesis-generation query, run on
+the held-out catalysis domain. It demonstrates all four pipeline layers operating
+together and grounding a novel mechanistic claim in both structured experimental
+records and peer-reviewed literature.
+
+**Query:**
+> Use our experimental records and relevant literature to propose a testable
+> explanation for why ALD-prepared Pd/CeO2 outperforms wet-impregnated samples.
+
+**Pipeline trace:**
+```
+[1/4] Planning request...
+  status=ready  tasks=['lookup', 'generate_hypothesis']
+  sources=['structured_data', 'external_literature', 'general_knowledge']
+
+[2/4] Retrieving evidence...
+  [db]  4 rows returned  (PDC-003 ALD, CER-001/002/003 wet impregnation)
+  [lit] 5 chunks retrieved  (Spezzati et al. 2017; Choi et al. 2021)
+
+[3/4] Synthesising answer...
+  confidence=medium  citations=[EV-S-001..004, EV-D-001, EV-D-002]
+
+[4/4] Verifying claims...
+  outcome=passed  action=allow
+```
+
+**Answer (abridged):**
+
+The database records show that at matched 1 wt% Pd loading and identical BET
+surface area (~113 m²/g), ALD-prepared PDC-003 achieves dispersion = 88.4%,
+TOF = 0.91 s⁻¹, and stability = 350 h, versus 54.2%, 0.48 s⁻¹, and 120 h for
+wet-impregnated CER-001 — a 90% TOF gain and 3× longer stability with no
+textural advantage [EV-S-001, EV-S-004].
+
+The proposed mechanism: ALD's self-limiting vapour-phase deposition
+preferentially generates isolated, atomically dispersed PdOx sites anchored to
+CeO2 surface oxygen positions. Literature confirms that atomically dispersed
+PdO/PdO2 on CeO2(111) are the active phase for low-temperature CO oxidation
+(ΔEact = 29 kJ/mol via Mars–van Krevelen), while metallic Pd clusters are
+inactive due to CO poisoning [EV-D-002]. Higher dispersion in ALD samples
+approaches the single-atom/sub-nm regime, consistent with the Choi et al. result
+that increasing Pd dispersion on CeO2 from ~45.6% to 75.1% (via hydrothermal
+redispersion) directly improves activity [EV-D-001].
+
+**Testable predictions generated:**
+1. HAADF-STEM / XANES — ALD PDC-003 should show Pd²⁺/Pd⁴⁺ oxidation state
+   (PdOx), CER-001 a higher fraction of metallic Pd nanoparticles.
+2. CO-IR — PDC-003 should show isolated Pd²⁺–CO bands (>2100 cm⁻¹), not
+   bridging/linear CO on Pd⁰ clusters.
+3. Post-reaction dispersion — PDC-003 should retain dispersion better after
+   350 h than CER-001 after 120 h, confirming stronger site-anchoring.
+4. Temperature-matched TOF — retesting PDC-003 at 100 °C (matching CER-001)
+   expected to widen the TOF gap further.
+
+*Confidence: medium — direct spectroscopic characterisation of PDC-003 Pd
+speciation not yet in the evidence base. Verification: passed.*
+
+---
+
 ## Domain adaptation: what changes between domains
 
 The table below maps each production component to its catalysis-domain
